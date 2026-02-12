@@ -8,3 +8,6 @@ There are two types of versions of Secura: "Original" and "Last Version."
 
 ### Original  This was the very first version of Secura (branch ver1.0).
 ### Last Version This was the very last version of Secura before it got abandoned (branch last-version).
+
+## Sooo what is Secura up to nowadays?
+Secura has been rebranded to 101 Raiding, check it out here https://discord.gg/xpq2q3WADy
