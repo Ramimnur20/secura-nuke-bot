@@ -4,7 +4,7 @@ it has been made open source by Adam, use it if you want it has a logging system
 
 ## Versions
 
-There are two types of version of secura "Original" and "Last version"
+There are two types of versions of Secura: "Original" and "Last Version."
 
-### Original = this was the very first version of Secura
-### Last Version = this was the very last version of Secura before it got abandoned
+### Original  This was the very first version of Secura (branch ver1.0).
+### Last Version This was the very last version of Secura before it got abandoned (branch last-version).
