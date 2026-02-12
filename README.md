@@ -1,2 +1,2 @@
-# secura-nuke-bot
-This is the Archive of the secura nuke bot by Adam.
+# Secura
+Secura is a Nuke Bot made by **adam** 'adamthecarter25 on discord', un fortunately it has reached its EOL
