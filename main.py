@@ -6,7 +6,7 @@ from colorama import Fore, Style
 import asyncio
 from webserver import keep_alive
 token = ""
-
+# leaked by voby!
 
 SPAM_CHANNEL =  ["Secura runs you" , "Get Banned" , "NUKED" , "oops Secura","F IN CHAT SECURA","Should Have Listened","Get NUKED clowns","Nuked by SECURA ","oops got nuked","I run you","Nuked by SECURA","I run you","kinda got nuked by yourself"]
 SPAM_MESSAGE = ["@everyone You Got Nuked by SECURA https://discord.gg/NWSjtKjsPy RIP 67"]
