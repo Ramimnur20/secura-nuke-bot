@@ -1,1 +1,2 @@
-# leak by VOBY7 💀
+> leaked by voby7
+> fuck adam!
